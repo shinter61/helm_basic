@@ -7,3 +7,6 @@ data:
   drink: {{ .Values.favorite.drink | repeat 5 | quote }}
   food: {{ .Values.favorite.food | upper | quote }}
   hoge: {{ .Values.favorite.ramen | default "miso" | quote }}
+  {{- if eq .Values.favorite.drink "coffee" }}
+  mug: "true"
+  {{- end }}
