@@ -4,9 +4,12 @@ metadata:
   name: {{ .Release.Name }}-configmap
 data:
   myvalue: "Hello World"
-  drink: {{ .Values.favorite.drink | repeat 5 | quote }}
-  food: {{ .Values.favorite.food | upper | quote }}
-  hoge: {{ .Values.favorite.ramen | default "miso" | quote }}
+  {{- with .Values.favorite }}
+  drink: {{ .drink | repeat 5 | quote }}
+  food: {{ .food | upper | quote }}
+  hoge: {{ .ramen | default "miso" | quote }}
+  release: {{ $.Release.Name }}
+  {{- end }}
   {{- if eq .Values.favorite.drink "coffee" }}
   mug: "true"
   {{- end }}
