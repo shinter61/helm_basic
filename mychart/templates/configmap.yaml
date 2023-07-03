@@ -13,3 +13,11 @@ data:
   {{- if eq .Values.favorite.drink "coffee" }}
   mug: "true"
   {{- end }}
+  toppings: |-
+    {{- range .Values.pizzaToppings }}
+    - {{ . | title | quote }}
+    {{- end }}
+  sizes: |-
+    {{- range tuple "small" "medium" "large" }}
+    - {{ . }}
+    {{- end }}
