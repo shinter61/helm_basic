@@ -25,3 +25,16 @@ data:
     {{- range tuple "small" "medium" "large" }}
     - {{ . }}
     {{- end }}
+  {{- $files := .Files }}
+  {{- range tuple "config1.toml" "config2.toml" "config3.toml" }}
+  {{ . }}: |-
+    {{ $files.Get . }}
+  {{- end }}
+  {{- range $path, $_ := .Files.Glob "**.yaml" }}
+  {{ $files.Get $path }}
+  {{- end }}
+  token: |-
+    {{ .Files.Get "config1.toml" | b64enc }}
+  some-file.txt: {{ range .Files.Lines "foo/foo.txt" }}
+    {{ . }}{{ end }}
+
