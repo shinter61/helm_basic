@@ -10,3 +10,5 @@ pizzaToppings:
 mysubchart:
   dessert: ice cream
 
+global:
+  salad: caesar
